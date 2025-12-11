@@ -4,6 +4,13 @@ define('CLI_SCRIPT', true);
 require(__DIR__ . '/../../config.php');
 require_once($CFG->libdir . '/clilib.php');
 
+// Ensure $CFG is available.
+if (!isset($CFG)) {
+    cli_error('Missing $CFG after loading config.php');
+}
+
+// Explicitly load the plugin class to avoid autoloader issues in CI containers.
+require_once(__DIR__ . '/classes/generator.php');
 use local_performancetool\generator;
 
 list($options, $unrecognized) = cli_get_params(
