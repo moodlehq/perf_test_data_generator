@@ -116,7 +116,7 @@
           <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
             <collectionProp name="CookieManager.cookies"/>
             <boolProp name="CookieManager.clearEachIteration">true</boolProp>
-            <stringProp name="CookieManager.policy">rfc2109</stringProp>
+            <stringProp name="CookieManager.policy">standard</stringProp>
           </CookieManager>
           <hashTree/>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Frontpage not logged" enabled="true">
@@ -359,7 +359,7 @@
           <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
             <collectionProp name="CookieManager.cookies"/>
             <boolProp name="CookieManager.clearEachIteration">true</boolProp>
-            <stringProp name="CookieManager.policy">rfc2109</stringProp>
+            <stringProp name="CookieManager.policy">standard</stringProp>
           </CookieManager>
           <hashTree/>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Frontpage not logged" enabled="true">
