@@ -21,12 +21,22 @@ class generator {
             'debugdisplay', 'enablenotes', 'enableblogs', 'enablebadges', 'enableoutcomes',
             'enableportfolios', 'enablerssfeeds', 'enablecompletion', 'enablecourserequests',
             'enableavailability', 'enableplagiarism', 'enablegroupmembersonly', 'enablegravatar',
-            'enablesafebrowserintegration', 'usecomments', 'dndallowtextandlinks', 'gradepublishing'
+            'enablesafebrowserintegration', 'usecomments', 'dndallowtextandlinks', 'gradepublishing',
+            // Both default to 0 on fresh 5.x installs. The pages they guard redirect to the login
+            // page rather than failing, so without these the site home and My courses scenarios
+            // silently measure a redirect instead of the page under test.
+            'enablemyhome', 'enablemycourses'
         );
 
         foreach ($settings as $setting) {
             set_config($setting, 1);
         }
+
+        // Fresh 5.x installs default forcelogin to 1 (MDL-87523), which sends anonymous requests to
+        // the login page from require_course_login() before any page-level check runs. That turns
+        // the "Frontpage not logged" scenario into a second copy of "View login page", and makes it
+        // incomparable with 4.x, where the default is 0.
+        set_config('forcelogin', 0);
 
         // Update admin user info if exists.
         $admin = $DB->get_record('user', array('username' => 'admin'), '*', IGNORE_MISSING);
